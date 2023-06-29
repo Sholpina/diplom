@@ -13,6 +13,10 @@ import os.path
 import os
 from pathlib import Path
 
+from django.conf import settings
+from django.shortcuts import redirect
+from django.urls import re_path
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-v09rt$50+4=5q0g09*^4^dld&)it8#dz+3dj&q6p^tr&v^ce-a'
+SECRET_KEY = 'django-insecursdfsdfsdfsdfsdfs+4=5q0g09*^4^dld&)it8#dz+3dj&q6p^tr&v^ce-a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +35,23 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
+
+]
+
 INSTALLED_APPS = [
+# The following apps are required:
+#     'django.contrib.auth',
+#     'django.contrib.messages',
+#     'django.contrib.sites',
+
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +60,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portfolio',
     'blog',
+    'lawersagenda',
 ]
+
+# SITE_ID = 1
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             'client_id': your client id,
+#             'secret': your secret,
+#             'key': ''
+#         }
+#     }
+# }
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -120,6 +153,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+if not DEBUG:
+    STATIC_ROOT = Path(BASE_DIR / 'static')  # todo ENABLE FOR COLLECT STATIC
+STATICFILES_DIRS = [
+    Path(BASE_DIR, 'react/build/static'),
+]
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -129,3 +168,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+try:
+    from .local_settings import *
+except ImportError:
+    print("Looks like no local file. You must be on production")

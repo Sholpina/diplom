@@ -1,0 +1,15 @@
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <h1>Sign Up</h1>
+        <h2>{{ error }}</h2>
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" method="post">
+            {% csrf_token %}
+            <div class="text-end">
+                    <button type="button" class="btn btn-outline-light me-2">Войти</button>
+                {{  form.as_p }}
+                <button type="submit" class="btn btn-warning">Sign Up</button>
+                </div>
+            </form>
+
+    </div>
+</header>

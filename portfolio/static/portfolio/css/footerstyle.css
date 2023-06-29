@@ -1,0 +1,43 @@
+/* Footer Widget Container */
+.col-sm-6 {
+  margin-bottom: 20px;
+}
+
+/* Widget Title */
+.col-sm-6 h5 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Social Media Icons */
+.col-sm-6 .nav-link {
+  display: inline-flex;
+  align-items: center;
+  color: #000;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.col-sm-6 .nav-link i {
+  width: 20px;
+}
+
+/* Facebook */
+.text-facebook {
+  color: #3b5998;
+}
+
+/* Twitter */
+.text-twitter {
+  color: #1da1f2;
+}
+
+/* LinkedIn */
+.text-linkedin {
+  color: #0077b5;
+}
+
+/* YouTube */
+.text-youtube {
+  color: #ff0000;
+}
